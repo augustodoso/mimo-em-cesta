@@ -33,7 +33,7 @@
                 <div class="stat-icon purple">📋</div>
                 <div>
                     <span>Pedidos cadastrados</span>
-                    <strong>12</strong>
+                    <strong>{{ total }}</strong>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                 <div class="stat-icon orange">📦</div>
                 <div>
                     <span>Em preparação</span>
-                    <strong>4</strong>
+                    <strong>{{ em_preparacao }}</strong>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 <div class="stat-icon green">✓</div>
                 <div>
                     <span>Entregues</span>
-                    <strong>3</strong>
+                    <strong>{{ entregues }}</strong>
                 </div>
             </div>
         </section>
@@ -59,7 +59,7 @@
             <p>Selecione uma opção para começar.</p>
 
             <div class="action-grid">
-                <a href="#" class="action-card featured">
+                <a href="{{ url_for('novo_pedido') }}" class="action-card featured">
                     <div class="action-icon">＋</div>
                     <div>
                         <h3>Novo Pedido</h3>
@@ -68,7 +68,7 @@
                     <span class="arrow">→</span>
                 </a>
 
-                <a href="#" class="action-card">
+                <a href="{{ url_for('clientes') }}" class="action-card">
                     <div class="action-icon">👥</div>
                     <div>
                         <h3>Clientes</h3>
@@ -77,7 +77,7 @@
                     <span class="arrow">→</span>
                 </a>
 
-                <a href="#" class="action-card">
+                <a href="{{ url_for('pedidos') }}" class="action-card">
                     <div class="action-icon">📋</div>
                     <div>
                         <h3>Pedidos</h3>
@@ -90,7 +90,6 @@
 
         <footer>
             <span>Mimo em Cesta · Painel Administrativo</span>
-            <span class="demo-label">Dados demonstrativos</span>
         </footer>
     </main>
 </body>

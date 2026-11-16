@@ -13,7 +13,6 @@ from database import conectar, inicializar_banco
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
 
-
 inicializar_banco()
 
 STATUS_PEDIDOS = [
@@ -28,7 +27,27 @@ STATUS_PEDIDOS = [
 
 @app.route("/")
 def dashboard():
-    return render_template("dashboard.html")
+    with conectar() as conexao:
+        total = conexao.execute(
+            "SELECT COUNT(*) FROM pedidos"
+        ).fetchone()[0]
+
+        em_preparacao = conexao.execute(
+            "SELECT COUNT(*) FROM pedidos WHERE status = ?",
+            ("Em Preparação",)
+        ).fetchone()[0]
+
+        entregues = conexao.execute(
+            "SELECT COUNT(*) FROM pedidos WHERE status = ?",
+            ("Entregue",)
+        ).fetchone()[0]
+
+    return render_template(
+        "dashboard.html",
+        total=total,
+        em_preparacao=em_preparacao,
+        entregues=entregues
+    )
 
 
 @app.route("/clientes", methods=["GET", "POST"])
