@@ -69,3 +69,10 @@ O banco de dados será criado automaticamente.
 MVP em desenvolvimento para fins acadêmicos. A versão atual destina-se a testes locais com dados fictícios.
 
 A autenticação administrativa e outras melhorias de segurança ainda serão implementadas.
+
+## Contexto acadêmico
+
+Este projeto foi desenvolvido como parte de uma atividade
+de extensão universitária, com o objetivo de auxiliar
+na organização de clientes, pedidos e entregas do
+empreendimento Mimo em Cesta.
