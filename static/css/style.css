@@ -479,3 +479,26 @@ footer {
         min-width: 0;
     }
 }
+
+/* Melhorias de contraste e acessibilidade */
+
+.form-actions a.button-primary,
+a.button-primary {
+    color: #ffffff;
+    background-color: #772b89;
+}
+
+a.button-primary:hover,
+.status-form button:hover {
+    background-color: #542066;
+    color: #ffffff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #772b89;
+    outline-offset: 3px;
+}
