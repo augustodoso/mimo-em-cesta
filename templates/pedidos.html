@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pedidos | Mimo em Cesta</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-content">
+        <div class="brand">
+            <div class="brand-icon">🎁</div>
+            <div>
+                <strong>Mimo em Cesta</strong>
+                <span>Cestas personalizadas</span>
+            </div>
+        </div>
+
+        <div class="admin-label">
+            👤 Área Administrativa
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <a href="{{ url_for('dashboard') }}">
+        ← Voltar ao Painel
+    </a>
+
+    <div class="page-heading">
+        <h1>Pedidos</h1>
+        <p>Consulte e acompanhe as encomendas cadastradas.</p>
+    </div>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% for categoria, mensagem in mensagens %}
+            <p role="alert" class="notice {{ categoria }}">
+                {{ mensagem }}
+            </p>
+        {% endfor %}
+    {% endwith %}
+
+    <section class="client-list">
+        <h2>Encomendas cadastradas</h2>
+
+        {% if pedidos %}
+
+            {% for pedido in pedidos %}
+
+                <article class="pedido-card">
+
+                    <div class="pedido-info">
+                        <h3>Pedido #{{ pedido['id_pedido'] }}</h3>
+
+                        <p>
+                            <strong>Cliente:</strong>
+                            {{ pedido['cliente'] }}
+                        </p>
+
+                        <p>
+                            <strong>Cesta:</strong>
+                            {{ pedido['modelo'] }}
+                        </p>
+
+                        <p>
+                            <strong>Valor:</strong>
+                            R$ {{ "%.2f"|format(pedido['valor_total']) }}
+                        </p>
+
+                        <p>
+                            <strong>Entrega:</strong>
+                            {{ pedido['data_entrega'] }}
+                        </p>
+
+                        <p>
+                            <strong>Status atual:</strong>
+                            <span class="status-label">
+                                {{ pedido['status'] }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <form
+                        method="POST"
+                        class="status-form"
+                        action="{{ url_for('atualizar_status', pedido_id=pedido['id_pedido']) }}"
+                    >
+                        <label for="status-{{ pedido['id_pedido'] }}">
+                            Atualizar status
+                        </label>
+
+                        <select
+                            id="status-{{ pedido['id_pedido'] }}"
+                            name="status"
+                            required
+                        >
+                            {% for status in status_disponiveis %}
+                                <option
+                                    value="{{ status }}"
+                                    {% if status == pedido['status'] %}selected{% endif %}
+                                >
+                                    {{ status }}
+                                </option>
+                            {% endfor %}
+                        </select>
+
+                        <button type="submit">
+                            Atualizar Status
+                        </button>
+                    </form>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>Nenhum pedido cadastrado até o momento.</p>
+
+        {% endif %}
+    </section>
+
+    <div class="form-actions">
+        <a href="{{ url_for('dashboard') }}">
+            Voltar ao Painel
+        </a>
+
+        <a
+            href="{{ url_for('novo_pedido') }}"
+            class="button-primary"
+        >
+            + Novo Pedido
+        </a>
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes | Mimo em Cesta</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-content">
+            <div class="brand">
+                <div class="brand-icon">🎁</div>
+                <div>
+                    <strong>Mimo em Cesta</strong>
+                    <span>Cestas personalizadas</span>
+                </div>
+            </div>
+            <div class="admin-label">👤 Área Administrativa</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="{{ url_for('dashboard') }}">← Voltar ao Painel</a>
+
+        <div class="page-heading">
+            <h1>Clientes</h1>
+            <p>Cadastre os clientes da Mimo em Cesta.</p>
+        </div>
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+                <p role="alert" class="notice {{ categoria }}">
+                    {{ mensagem }}
+                </p>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" class="order-form">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome"
+                   required maxlength="120">
+
+            <label for="telefone">Telefone *</label>
+            <input type="tel" id="telefone" name="telefone"
+                   required maxlength="20">
+
+            <label for="email">E-mail (opcional)</label>
+            <input type="email" id="email" name="email"
+                   maxlength="150">
+
+            <div class="form-actions">
+                <a href="{{ url_for('dashboard') }}">Cancelar</a>
+                <button type="submit">Salvar Cliente</button>
+            </div>
+        </form>
+
+        <section class="client-list">
+            <h2>Clientes cadastrados</h2>
+
+            {% if clientes %}
+                {% for cliente in clientes %}
+                    <div class="client-card">
+                        <strong>{{ cliente["nome"] }}</strong>
+                        <span>{{ cliente["telefone"] }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum cliente cadastrado.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

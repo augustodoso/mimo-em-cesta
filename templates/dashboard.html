@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo | Mimo em Cesta</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-content">
+            <div class="brand">
+                <div class="brand-icon">🎁</div>
+                <div>
+                    <strong>Mimo em Cesta</strong>
+                    <span>Cestas personalizadas</span>
+                </div>
+            </div>
+            <div class="admin-label">👤 Área Administrativa</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-heading">
+            <h1>Painel Administrativo</h1>
+            <p>Organize clientes, pedidos e entregas de forma simples.</p>
+        </div>
+
+        <section class="stats">
+            <div class="stat-card">
+                <div class="stat-icon purple">📋</div>
+                <div>
+                    <span>Pedidos cadastrados</span>
+                    <strong>12</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">📦</div>
+                <div>
+                    <span>Em preparação</span>
+                    <strong>4</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <div>
+                    <span>Entregues</span>
+                    <strong>3</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="actions">
+            <h2>Acesso rápido</h2>
+            <p>Selecione uma opção para começar.</p>
+
+            <div class="action-grid">
+                <a href="#" class="action-card featured">
+                    <div class="action-icon">＋</div>
+                    <div>
+                        <h3>Novo Pedido</h3>
+                        <p>Registrar uma nova encomenda</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#" class="action-card">
+                    <div class="action-icon">👥</div>
+                    <div>
+                        <h3>Clientes</h3>
+                        <p>Cadastrar e gerenciar clientes</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#" class="action-card">
+                    <div class="action-icon">📋</div>
+                    <div>
+                        <h3>Pedidos</h3>
+                        <p>Consultar e atualizar encomendas</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <span>Mimo em Cesta · Painel Administrativo</span>
+            <span class="demo-label">Dados demonstrativos</span>
+        </footer>
+    </main>
+</body>
+</html>
