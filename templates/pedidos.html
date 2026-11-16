@@ -73,12 +73,12 @@
 
                         <p>
                             <strong>Valor:</strong>
-                            R$ {{ "%.2f"|format(pedido['valor_total']) }}
+                            R$ {{ ("%.2f"|format(pedido['valor_total'])).replace(".", ",") }}
                         </p>
 
                         <p>
                             <strong>Entrega:</strong>
-                            {{ pedido['data_entrega'] }}
+                            {{ pedido['data_entrega'][8:10] }}/{{ pedido['data_entrega'][5:7] }}/{{ pedido['data_entrega'][0:4] }}
                         </p>
 
                         <p>
